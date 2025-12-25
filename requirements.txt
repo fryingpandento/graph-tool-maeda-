@@ -3,5 +3,5 @@ pandas
 matplotlib
 numpy
 scipy
-japanize-matplotlib
+
 openpyxl

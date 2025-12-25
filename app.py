@@ -6,7 +6,15 @@ import numpy as np
 import io
 import math
 from scipy.optimize import curve_fit
-import japanize_matplotlib
+# import japanize_matplotlib
+import os
+
+# 日本語フォント設定 (Streamlit Cloud w/ packages.txt or Local)
+# IPAexGothicがインストールされているか確認し、あれば設定する
+try:
+    plt.rcParams['font.family'] = 'IPAexGothic'
+except:
+    pass
 
 # ==============================================================================
 # 0. 定数・設定
