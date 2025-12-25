@@ -8,13 +8,26 @@ import math
 from scipy.optimize import curve_fit
 # import japanize_matplotlib
 import os
+import matplotlib.font_manager as fm
 
-# 日本語フォント設定 (Streamlit Cloud w/ packages.txt or Local)
-# IPAexGothicがインストールされているか確認し、あれば設定する
-try:
-    plt.rcParams['font.family'] = 'IPAexGothic'
-except:
-    pass
+# 日本語フォント設定
+# Streamlit Cloud (Debian) のfonts-ipaexfontのインストールパス
+font_path = "/usr/share/fonts/opentype/ipaexfont-gothic/ipaexg.ttf"
+
+if os.path.exists(font_path):
+    # フォントファイルを直接読み込んで登録
+    try:
+        fm.fontManager.addfont(font_path)
+        font_prop = fm.FontProperties(fname=font_path)
+        plt.rcParams['font.family'] = font_prop.get_name()
+    except Exception as e:
+        print(f"Font loading error: {e}")
+else:
+    # 既存のフォールバック (Local環境など)
+    try:
+        plt.rcParams['font.family'] = 'IPAexGothic'
+    except:
+        pass
 
 # ==============================================================================
 # 0. 定数・設定
